@@ -1,4 +1,4 @@
-package com.waviz.mybatis.mybatisexamples.mapper;
+	package com.waviz.mybatis.mybatisexamples.mapper;
 
 import java.util.*;
 import com.waviz.mybatis.mybatisexamples.model.Users;
@@ -22,7 +22,6 @@ void delete(Users users);
 
 @Update("UPDATE users SET name=#{name},password=#{password},mobile=#{mobile},email=#{email} where id =#{id}" )
 void update(Users users);
-
 }
 
 
