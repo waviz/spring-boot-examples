@@ -18,7 +18,6 @@ import java.util.Optional;
 public class Controller{
 	
 	@Autowired
-	
 	private UserService userService;
 	
 	@RequestMapping(value="/getAll")
@@ -31,14 +30,15 @@ public class Controller{
 	public List<User> AddAllUser(){
 		User user = new User();
 		userService.AddUser(user);
-		return userService.getAllUsers();
+	return userService.getAllUsers();
 		 
 	}
 	
 	 @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
-	    public Optional<User> getUser(@PathVariable int id)
+	    public List<User> getUser(@PathVariable int id)
 	{  
-	        return userService.getUser(id);  
-    }  
+	       userService.delete(id);  
+    
+		return userService.getAllUsers();
 
-}
+}}

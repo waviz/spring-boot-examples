@@ -1,4 +1,4 @@
-package com.waviz.jpa.App;
+package com.waviz.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
