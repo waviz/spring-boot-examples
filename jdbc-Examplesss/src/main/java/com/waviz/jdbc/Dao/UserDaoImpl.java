@@ -1,5 +1,7 @@
-package com.waviz.jdbc.Dao;
+package com.waviz.jdbc.dao;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class UserDaoImpl implements UserDao
     @Override
     public List<User> getAllUsers()
     {
-        String sql = "select id,name,password,email from users";
+        String sql = "select * from user";
         List userList = jdbcTemplate
                 .query(sql, new UserMapper());
         return userList;
@@ -28,30 +30,48 @@ public class UserDaoImpl implements UserDao
     @Override
     public User getUserById(int id)
     {
-        String sql = "select id, name, password, email from users where id =?";
+        String sql = "select * from user where id =?";
         User user = jdbcTemplate
                 .queryForObject(sql, new UserMapper(), id);
         return user;
+    }
+    
+    @Override
+    public List<User> getUserByCreated_on(String DateFrom ,String DateTo) {
+    
+        String sql = "SELECT * from user where created_on between ? and ?";
+        List userList = jdbcTemplate
+                .query(sql, new UserMapper(),DateFrom,DateTo);
+        return userList;
+    }
+
+    @Override
+    public List<User> getUserByCreated_by(String DateFrom ,String DateTo) {
+    
+        String sql = "SELECT * FROM event e inner join user u on e.created_by = u.id where e.created_on between ? and ? group by created_by";
+        List userList = jdbcTemplate
+                .query(sql, new UserMapper(),DateFrom,DateTo);
+        return userList;
     }
 
     @Override
     public void insertUser(User user)
     {
-        String sql = "insert into users (id, name, password, email) values (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, user.getId(), user.getName(), user.getPassword(), user.getEmail());
+        String sql = "insert into user (user_name,password,email,first_name,last_name,phone_number,is_verified,otp,country_id,status,modified_by,modified_on,created_on) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, user.getId(),user.getUser_name(),user.getPassword(),user.getEmail(),user.getFirst_name(),user.getLast_name(),user.getPhone_number(),user.getIs_verified(),user.getOtp(),user.getCountry_id(),user.getStatus(),user.getModified_by(),user.getModified_on(),user.getCreated_on());
     }
 
     @Override
     public void updateUser(User user)
     {
-        String sql = "update Users set name = ?, password = ?, email = ? where id = ?";
-        jdbcTemplate.update(sql, user.getName(), user.getPassword(), user.getEmail(), user.getId());
+        String sql = "update user set user_name = ?,password = ?,email = ?,first_name = ?,last_name = ?,phone_number = ?,is_verified = ?,otp = ?,country_id = ?,status = ?,modified_by = ?,modified_on = ?,created_on = ? where id = ?";
+        jdbcTemplate.update(sql, user.getId(),user.getUser_name(),user.getPassword(),user.getEmail(),user.getFirst_name(),user.getLast_name(),user.getPhone_number(),user.getIs_verified(),user.getOtp(),user.getCountry_id(),user.getStatus(),user.getModified_by(),user.getModified_on(), user.getCreated_on());
     }
-
+    
     @Override
     public void deleteUser(int id)
     {
-        String sql = "delete from Users where id = ?";
+        String sql = "delete from User where id = ?";
         jdbcTemplate.update(sql, id);
     }
 }

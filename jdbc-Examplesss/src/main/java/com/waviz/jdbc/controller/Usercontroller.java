@@ -1,5 +1,6 @@
 package com.waviz.jdbc.controller;
-    import java.util.List;
+    import java.util.Date;
+import java.util.List;
 
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ package com.waviz.jdbc.controller;
 	import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RestController;
 
-import com.waviz.jdbc.Dao.UserDaoImpl;
+import com.waviz.jdbc.dao.UserDaoImpl;
 import com.waviz.jdbc.model.User;
 
 	@RestController
@@ -21,8 +22,6 @@ import com.waviz.jdbc.model.User;
 	    @Autowired
 	    UserDaoImpl userDaoImpl;
 	    
-	   
-
 	    @GetMapping("/users")
 	    public ResponseEntity<List<User>> getAllUser()
 	    {
@@ -31,11 +30,28 @@ import com.waviz.jdbc.model.User;
 	    }
 
 	    @GetMapping("/user/{id}")
-	    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id)
+	    public ResponseEntity<User> getUserById(@PathVariable Integer id)
 	    {
 	    	User user = userDaoImpl.getUserById(id);
 	        return new ResponseEntity<User>(user, HttpStatus.OK);
 	    }
+	    
+	    @GetMapping("/user/{date1}/{date2}")
+	    public ResponseEntity<List<User>> getUserByCreated_on(@PathVariable("date1") String dateFrom,
+	    		@PathVariable("date2") String dateTo)
+	    {
+	    	List<User> userList = userDaoImpl.getUserByCreated_on(dateFrom,dateTo); 
+	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	    }
+	    
+	    @GetMapping("/event/{date1}/{date2}")
+	    public ResponseEntity<List<User>> getUserByCreated_by(@PathVariable("date1") String dateFrom,
+	    		@PathVariable("date2") String dateTo)
+	    {
+	    	List<User> userList = userDaoImpl.getUserByCreated_by(dateFrom,dateTo); 
+	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	    }
+
 
 	    @PutMapping("/update")
 	    public ResponseEntity<User> updateArticle(@RequestBody User user)
