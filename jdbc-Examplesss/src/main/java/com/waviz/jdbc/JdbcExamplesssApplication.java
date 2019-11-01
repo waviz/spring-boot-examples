@@ -4,9 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-
 @SpringBootApplication
-@ComponentScan(basePackages={"com.waviz.jdbc"})
+@ComponentScan({"com.waviz.jdbc"})
 public class JdbcExamplesssApplication {
 
 	public static void main(String[] args) {

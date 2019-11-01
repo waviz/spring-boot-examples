@@ -28,8 +28,6 @@ public class UserMapper implements RowMapper<User>
          user.setModified_on(row.getDate("modified_on"));
          user.setCreated_on(row.getDate("created_on"));
         
-         
-
-         return user;
+          return user;
     }
 }
