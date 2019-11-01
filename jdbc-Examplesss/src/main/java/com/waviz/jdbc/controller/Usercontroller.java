@@ -36,6 +36,7 @@ import com.waviz.jdbc.model.User;
 	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
 	    }
 	    
+	    
 	  //getUserById
 	    @GetMapping("/user/{id}")
 	    public ResponseEntity<User> getUserById(@PathVariable Integer id)
@@ -67,11 +68,11 @@ import com.waviz.jdbc.model.User;
 	   
 	    //Active User b/w date
 	    @GetMapping("/ActiveUser/{date1}/{date2}")
-	    public ResponseEntity<List<User>> getUserByStatusAndCreated_on(@PathVariable("date1") String dateFrom,
+	    public ResponseEntity<List<User>> getUserByStatusFromUser(@PathVariable("date1") String dateFrom,
 	    		@PathVariable("date2") String dateTo)
 	    {
 	    	log.info("Users found with findActiveUser()");
-	    	List<User> userList = userDaoImpl.getUserByCreated_on(dateFrom,dateTo); 
+	    	List<User> userList = userDaoImpl.getUserByStatusFromUser(dateFrom,dateTo); 
 	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
 	    }
 	    
@@ -81,7 +82,7 @@ import com.waviz.jdbc.model.User;
 	    		@PathVariable("date2") String dateTo)
 	    {
 	    	log.info("Users found Accept And RejectEvent()");
-	    	List<User> userList = userDaoImpl.getUserByCreated_on(dateFrom,dateTo); 
+	    	List<User> userList = userDaoImpl.getUserByEvent_participant(dateFrom,dateTo); 
 	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
 	    }
 

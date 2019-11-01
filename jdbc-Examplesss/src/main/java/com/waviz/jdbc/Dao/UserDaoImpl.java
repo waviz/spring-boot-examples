@@ -59,9 +59,9 @@ public class UserDaoImpl implements UserDao
     
     //Active User b/w date
     @Override
-    public List<User> getUserByStatusAndCreated_on(String DateFrom ,String DateTo) {
+    public List<User> getUserByStatusFromUser(String DateFrom ,String DateTo) {
     
-        String sql = "SELECT * FROM user where status = '1' and (created_on between ? and ?)";
+        String sql = "SELECT * FROM user where status = '1' and created_on between ? and ?";
         List userList = jdbcTemplate
                 .query(sql, new UserMapper(),DateFrom,DateTo);
         return userList;
@@ -69,7 +69,7 @@ public class UserDaoImpl implements UserDao
     
     //Accept Reject user from Event_Participant
     @Override
-    public List<User>getUserByEvent_participant(String DateFrom ,String DateTo) {
+    public List<User> getUserByEvent_participant(String DateFrom ,String DateTo) {
     
         String sql = "select * from event_participant e_p inner join user on e_p.phone_number = user.phone_number where e_p.created_on between ? and ? and rejected = '1' and is_viewed = '1' group by name";
         List userList = jdbcTemplate
