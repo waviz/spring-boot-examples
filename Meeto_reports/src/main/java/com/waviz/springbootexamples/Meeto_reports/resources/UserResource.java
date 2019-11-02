@@ -12,10 +12,16 @@ import  org.springframework.web.bind.annotation.GetMapping;
 import  org.springframework.beans.factory.annotation.Autowired;
 import  org.springframework.web.bind.annotation.PathVariable;
 import  java.time.LocalDateTime;
+import  org.slf4j.LoggerFactory;
+import  org.slf4j.Logger;
 
 @RestController
 @RequestMapping("/users")
 public class UserResource{
+
+Logger logger = LoggerFactory.getLogger(UserResource.class);
+
+
 
 @Autowired
 private UserMapper userMapper;
@@ -27,6 +33,8 @@ public List<String> getAll(@PathVariable String dateFrom,
 
 {
  
+logger.info("fetching phone numbers of new registered members");
+
 return userMapper.find(dateFrom,dateTo);
 
 }
