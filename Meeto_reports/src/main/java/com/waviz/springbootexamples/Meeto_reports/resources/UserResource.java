@@ -11,7 +11,6 @@ import  org.springframework.web.bind.annotation.RestController;
 import  org.springframework.web.bind.annotation.GetMapping;
 import  org.springframework.beans.factory.annotation.Autowired;
 import  org.springframework.web.bind.annotation.PathVariable;
-import  com.waviz.springbootexamples.Meeto_reports.util.UserContext;
 import  java.time.LocalDateTime;
 
 @RestController
@@ -21,27 +20,14 @@ public class UserResource{
 @Autowired
 private UserMapper userMapper;
 
-@GetMapping("/all")
-public List<User> getAll()
+@GetMapping("/all/{dateFrom}/{dateTo}/")
+public List<String> getAll(@PathVariable String dateFrom,
+                       @PathVariable String dateTo
+)
 
 {
-//LocalDateTime dateFrom = LocalDate.parse(dateFrom); 
-//LocalDateTime dateTo = LocalDate.parse(dateTo); 
-//@GetMapping("/all/{dateFrom}/{dateTo}/")
-
-//public List<User> getAll(@PathVariable String dateFrom,
-  //                       @PathVariable String dateTo
-//)
-
-
  
- //UserContext u = new UserContext();
- //u.setCreated_On1(dateFrom);
- //u.setCreated_On2(dateTo);
-
-
-User u = new User();
-return userMapper.findAll(u);
+return userMapper.find(dateFrom,dateTo);
 
 }
 }
