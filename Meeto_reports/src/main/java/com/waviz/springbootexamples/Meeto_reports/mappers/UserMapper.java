@@ -10,7 +10,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper{
 
 
+@Select("SELECT count(phone_number) from user where created_on between #{dateFrom} and #{dateTo}")
+String count(String dateFrom,String dateTo);
+
 @Select("SELECT phone_number from user where created_on between #{dateFrom} and #{dateTo}")
-List<String> find(String dateFrom,String dateTo);
+List<String> findNewMembers(String dateFrom,String dateTo);
+
 
 }

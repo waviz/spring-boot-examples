@@ -35,7 +35,37 @@ public List<String> getAll(@PathVariable String dateFrom,
  
 logger.info("fetching phone numbers of new registered members");
 
-return userMapper.find(dateFrom,dateTo);
+return userMapper.findNewMembers(dateFrom,dateTo);
+
 
 }
+
+@GetMapping("/count/{dateFrom}/{dateTo}/")
+public String countAll(@PathVariable String dateFrom,
+                       @PathVariable String dateTo
+)
+
+{
+
+logger.info("total number of new registered members");
+
+String count;
+count = userMapper.count(dateFrom,dateTo);
+return count;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
