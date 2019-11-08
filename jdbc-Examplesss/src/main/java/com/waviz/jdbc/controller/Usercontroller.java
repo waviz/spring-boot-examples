@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.waviz.jdbc.dao.UserDaoImpl;
 //import com.waviz.jdbc.model.EventParticipant;
 import com.waviz.jdbc.model.User;
-
-	@RestController
+       @CrossOrigin(origins = "*")
+       @RestController
 	public class Usercontroller {
 		
 		Logger log = LoggerFactory.getLogger(this.getClass());
