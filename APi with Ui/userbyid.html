@@ -1,0 +1,73 @@
+<html>
+<head>
+	<title>API TEST</title>
+</head>
+<body>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<center><h1 style="color: red">Welcome to springboot user</h1>
+	<h1>Get User By Id</h1></center>
+	<hr/>
+	<table border="1" style="color: red">
+		<tr>
+			<th> id</th>
+    <th>user_name</th>
+    <th>password</th>
+    <th>email</th> 
+    <th>first_name</th>
+    <th>last_name</th>
+    <th>phone_number</th>
+    <th>is_verified</th>
+    <th>otp</th>
+    <th>country_id</th> 
+    <th>status</th>
+    <th>modified_by</th>
+     <th>modified_on</th> 
+    <th>created_on</th>
+    </tr> 
+
+    <tr>
+      <td><div id="id1"></div></td>
+      <td id="user_name"></td>
+      <td id="password"></td>
+      <td id="email"></td>
+      <td id="first_name"></td>
+      <td id="last_name"></td>
+      <td id="phone_number"></td>
+      <td id="is_verified"></td>
+      <td id="otp"></td>
+      <td id="country_id"></td>
+      <td id="status"></td>
+       <td id="modified_by"></td>
+      <td id="modified_on"></td>
+      <td id="created_on"></td>
+    
+    </tr>
+	</table>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				type: "GET",
+				data: {"id": 524},
+				url: "http://localhost:8080/user/524",
+				success: function(response){
+					   $("#id1").empty().append(response.id);
+					   $("#user_name").empty().append(response.user_name); 
+					   $("#password").empty().append(response.password);
+					   $("#email").empty().append(response.email);
+					   $("#first_name").empty().append(response.first_name);
+					   $("#last_name").empty().append(response.last_name);
+					   $("#phone_number").empty().append(response.phone_number);
+					   $("#is_verified").empty().append(response.is_verified);
+					   $("#otp").empty().append(response.otp);
+					   $("#country_id").empty().append(response.country_id);
+					   $("#status").empty().append(response.status);
+					   $("#modified_by").empty().append(response.modified_by);
+					   $("#modified_on").empty().append(response.modified_on);
+					   $("#created_on").empty().append(response.created_on);
+					  	
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1" />
+    <title>New Registration</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<center>
+		<h1 style="color:green">NEW REGISTERED USERS</h1>
+		<h2 style="color:red">New Users Created Between Date !</h2>
+		<hr/>
+	
+</head>
+<body>
+	<div id="Search-Form">
+        <div id="search-container">
+            <label>
+                <span>Date From</span>
+                <input type="text" name="search" value="" id="datepicker" class="text-field">
+                <span>Date To</span>
+                <input type="text" name="search2" value="" id="datepicker2" class="text-field">
+            </label>
+        <br />
+        <br />
+        <div id="search-submit">
+                <input style="font-weight: bold;"  type="button" name="submit" id="sumbit" value="Enter" onclick="ajaxGet()">
+            </div>
+        </div>  
+    </div>
+    <div id="response"></div>
+  <hr/>
+<table style="color: orange" border="1" width = "1500" height = "50"> 
+  <tr > 
+    <th>S.N</th>
+    <th>REGISTERED NUMBERS</th>
+    <th>REGISTRATION DATE</th>
+</tr> 
+
+    <tr>
+      <td><div id="sn"></div></td>>
+      <td id="phone_number"></td>
+      <td id="created_on"></td>
+    
+    </tr>
+    </table>
+</center>
+
+<script type="text/javascript">
+
+    
+      // DO GET
+      function ajaxGet() {
+      	  var datepicker= document.getElementById("datepicker").value;
+          var datepicker2=document.getElementById("datepicker2").value;
+      
+
+        $.ajax({
+
+          url : "http://localhost:8080/user/" + datepicker + "/" + datepicker2+ "",
+        //  data:{date1:datepicker,date2:datepicker2},
+          success : function(result) {
+            for (var i = 0; i < result.length; i++){
+             $("#sn").append(i+1);              $("#sn").append("<br>"); 
+             $("#phone_number").append(result[i]['phone_number']); $("#phone_number").append("<br>");
+             $("#created_on").append(result[i]['created_on']); $("#created_on").append("<br>");
+            }
+         }
+        });
+      }
+</script>
+</body>
+</html>

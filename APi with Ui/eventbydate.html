@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1" />
+    <title>Spring Boot jdbc Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<center>
+		<h1 style="color:green">Welcome to Springboot User !</h1>
+		<h2 style="color:red">find Event Created Between Date !</h2>
+		<hr/>
+	
+</head>
+<body>
+	<div id="Search-Form">
+        <div id="search-container">
+            <label>
+                <span>Search :</span>
+                <input type="text" name="search" value="" id="datepicker" class="text-field">
+                <span>or Between</span>
+                <input type="text" name="search2" value="" id="datepicker2" class="text-field">
+            </label>
+        <br />
+        <br />
+        <div id="search-submit">
+                <input type="button" name="submit" id="sumbit" value="search user" onclick="ajaxGet()">
+            </div>
+        </div>  
+    </div>
+    <div id="response"></div>
+  <hr/>
+<table style="color: orange" border="1" width = "1500" height = "50"> 
+  <tr > 
+    <th>S.n</th>
+    <th> id</th>
+    <th>user_name</th>
+    <th>password</th>
+    <th>email</th> 
+    <th>first_name</th>
+    <th>last_name</th>
+    <th>phone_number</th>
+    <th>is_verified</th>
+    <th>otp</th>
+    <th>country_id</th> 
+    <th>status</th>
+    <th>modified_by</th>
+     <th>modified_on</th> 
+    <th>created_on</th>
+    </tr> 
+
+    <tr>
+      <td><div id="sn"></div></td>
+      <td><div id="id1"></div></td>
+      <td id="user_name"></td>
+      <td id="password"></td>
+      <td id="email"></td>
+      <td id="first_name"></td>
+      <td id="last_name"></td>
+      <td id="phone_number"></td>
+      <td id="is_verified"></td>
+      <td id="otp"></td>
+      <td id="country_id"></td>
+      <td id="status"></td>
+       <td id="modified_by"></td>
+      <td id="modified_on"></td>
+      <td id="created_on"></td>
+    
+    </tr>
+    </table>
+</center>
+
+<script type="text/javascript">
+
+    
+      // DO GET
+      function ajaxGet() {
+      	  var datepicker= document.getElementById("datepicker").value;
+          var datepicker2=document.getElementById("datepicker2").value;
+      
+
+        $.ajax({
+
+          url : "http://localhost:8080/event/" + datepicker + "/" + datepicker2+ "",
+        //  data:{date1:datepicker,date2:datepicker2},
+          success : function(result) {
+            for (var i = 0; i < result.length; i++){
+              
+             $("#sn").append(i+1);              $("#sn").append("<br>"); 
+             $("#id1").append(result[i]['id']);              $("#id1").append("<br>");
+             $("#user_name").append(result[i]['user_name']); $("#user_name").append("<br>"); 
+             $("#password").append(result[i]['password']);   $("#password").append("<br>");
+             $("#email").append(result[i]['email']);         $("#email").append("<br>");
+             $("#first_name").append(result[i]['first_name']);$("#first_name").append("<br>");
+             $("#last_name").append(result[i]['last_name']); $("#last_name").append("<br>");
+             $("#phone_number").append(result[i]['phone_number']); $("#phone_number").append("<br>");
+             $("#is_verified").append(result[i]['is_verified']); $("#is_verified").append("<br>");
+             $("#otp").append(result[i]['otp']);               $("#otp").append("<br>");
+             $("#country_id").append(result[i]['country_id']); $("#country_id").append("<br>");
+             $("#status").append(result[i]['status']);         $("#status").append("<br>");
+             $("#modified_by").append(result[i]['modified_by']);$("#modified_by").append("<br>");
+             $("#modified_on").append(result[i]['modified_on']);$("#modified_on").append("<br>");
+             $("#created_on").append(result[i]['created_on']); $("#created_on").append("<br>");
+            }
+         //   $("#response").html(result[0]['id']);
+          }
+        });
+      }
+</script>
+</body>
+</html>
