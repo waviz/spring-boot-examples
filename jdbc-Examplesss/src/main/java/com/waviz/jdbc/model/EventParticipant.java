@@ -1,14 +1,12 @@
-/*package com.waviz.jdbc.model;
+package com.waviz.jdbc.model;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 public class EventParticipant {
 
 	 private Long id;
-	 private String event_id;
+	 private Long event_id;
 	 private String name;
      private String phone_number;
      private String country_code;
@@ -24,17 +22,17 @@ public class EventParticipant {
      {
          super();
      }
-     public EventParticipant(String event_id, String name, String phone_number, String country_code, String display_number,  
+     public EventParticipant(Long event_id,String name, String phone_number, String country_code, String display_number,  
     int status, boolean is_viewed, boolean notified, Date created_on,Date updated_on,boolean rejected)
      {
          super();
+         
          this.id = id;
-         this.event_id = event_id ;
+         this.event_id = event_id;
          this.name = name;
          this.phone_number = phone_number;
          this.country_code = country_code;
          this.display_number = display_number;
-         this.phone_number = phone_number;
          this.status = status;
          this.is_viewed = is_viewed;
          this.notified = notified;
@@ -50,10 +48,10 @@ public class EventParticipant {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getEvent_id() {
+	public Long getEvent_id() {
 		return event_id;
 	}
-	public void setEvent_id(String event_id) {
+	public void setEvent_id(Long event_id) {
 		this.event_id = event_id;
 	}
 	public String getName() {
@@ -117,6 +115,6 @@ public class EventParticipant {
 		this.rejected = rejected;
 	}  
 	
-}*/
+}
 
 

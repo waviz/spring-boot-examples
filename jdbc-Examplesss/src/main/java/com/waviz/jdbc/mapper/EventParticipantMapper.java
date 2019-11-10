@@ -1,4 +1,4 @@
-/*package com.waviz.jdbc.mapper;
+package com.waviz.jdbc.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.waviz.jdbc.model.EventParticipant;
 import com.waviz.jdbc.model.User;
+import com.waviz.jdbc.model.EventParticipant;
+import com.waviz.jdbc.model.Event;
+
 
 public class EventParticipantMapper implements RowMapper<EventParticipant> {
 	
@@ -15,7 +18,7 @@ public class EventParticipantMapper implements RowMapper<EventParticipant> {
 	    {
 		 EventParticipant eventParticipant = new EventParticipant();
 		 eventParticipant.setId(row.getLong("id"));
-		 eventParticipant.setEvent_id(row.getString("event_id"));
+		 eventParticipant.setEvent_id(row.getLong("event_id"));
 		 eventParticipant.setName(row.getString("name"));
 		 eventParticipant.setPhone_number(row.getString("phone_number"));
 		 eventParticipant.setCountry_code(row.getString("country_code"));
@@ -30,4 +33,4 @@ public class EventParticipantMapper implements RowMapper<EventParticipant> {
 		 
          return eventParticipant;
 }
-}*/
+}
