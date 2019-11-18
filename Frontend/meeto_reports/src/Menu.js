@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import './Menustyle.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 class Menu extends Component {
+       state = {
+     
+            loggedIn: true
+    
+  } 
 	render()
 	{
 		return(
        <div className="Menustyle">
        <ul>
-       <li> <Link to="/sign"> LIST OF NEW REGISTRATION </Link> </li>
-       <li> <Link to="/send"> NUMBER OF EVENT SENT TO DIFFERENT PEOPLE  </Link> </li>
-       <li> <Link to="/event"> NO OF EVENTS CREATED BY DIFFERENT USERS </Link> </li>
-       <li> <Link to="/reject"> NUMBER OF EVENTS REJECTED BY USERS</Link> </li>
-       
+        <li><NavLink to="/"  exact activeStyle={{color:'white'}} > HOME </NavLink> </li>
+       <li> <NavLink to="/new"  exact activeStyle={{color:'white'}} > NEW REGISTRATION </NavLink> </li>
+       <li> <NavLink to="/send" rexact activeStyle={{color:'white'}} > EVENT SENT TO DIFFERENT PEOPLE  </NavLink> </li>
+       <li> <NavLink to="/event" exact activeStyle={{color:'white'}}  > EVENTS CREATED BY DIFFERENT USERS </NavLink> </li>
+       <li> <NavLink to="/reject" exact activeStyle={{color:'white'}} > EVENTS REJECTED BY USERS</NavLink> </li>
+       <li> <NavLink to="/login" exact activeStyle={{color:'white'}} > {this.state.loggedIn ? ("lOGOUT"):("LOGIN")}</NavLink> </li>
 
        </ul>
       

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route , Switch} from 'react-router-dom';
+import {BrowserRouter, Route , Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import Sender from './Sender';
 import Menu from './Menu';
@@ -12,13 +12,17 @@ class App extends Component {
   render() {
      return (
        <BrowserRouter>
-       <div >
-       <Login />
-        <Route path="/sign"   exact component= {NewUser} />
-        <Route path="/login"  exact component= {Login} />
-        <Route path="/send"   exact component= {Sender} />
-        <Route path="/event"  exact component= {EventCreate} />
-        <Route path="/reject" exact component= {Reject} />
+      <div className="app-class">
+        
+        <Menu /> 
+        <Switch>
+        <Route path="/new"   exact strict component= {NewUser} />
+        <Route path="/login"  exact strict component= {Login} />
+        <Route path="/send"   exact strict component= {Sender} />
+        <Route path="/event"  exact strict component= {EventCreate} />
+        <Route path="/reject" exact strict component= {Reject} />
+        </Switch>
+
        </div>
 </BrowserRouter>
 );

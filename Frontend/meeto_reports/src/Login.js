@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {BrowserRouter, Route , Switch} from 'react-router-dom';
+import {BrowserRouter, Route , Redirect} from 'react-router-dom';
 import './Login.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Menu from './Menu'
@@ -10,7 +10,7 @@ class Login extends Component {
         this.state = {
             username:'',
             password: '',
-            check: true
+            loggedIn: false
     
   }      
     this.commonChange = this.commonChange.bind(this);
@@ -32,7 +32,7 @@ class Login extends Component {
       if(`${this.state.username}`==="Meeto" && `${this.state.password}`==="sid@meeto")
       { 
         alert("Hi " + `${this.state.username}` + " Login successful");
-        this.setState({check: false})
+        this.setState({loggedIn: true})
       }
       else
       {
@@ -46,7 +46,7 @@ class Login extends Component {
 
      <div className="login-form">
     
-         { !this.state.check ? (<Menu />):null}
+         { this.state.loggedIn ? (<Redirect to="/" />):null}
         <h1 className="text-center">
         <span className="font-weight-bold ">MEETO WIDE REPORT</span>
         </h1>
@@ -59,7 +59,7 @@ class Login extends Component {
         <Label>PASSWORD</Label>
        <Input type="password" name="password" placeholder="Enter your PASSWORD here" onChange={this.commonChange}/>
        </FormGroup>
-        <Button className="btn-lg btn-dark btn-block" onClick={this.login}>Log in</Button>
+        <Button className="btn-lg btn-dark btn-block" onClick={this.login}>{this.state.loggedIn ? ("log-out"):("Log")}</Button>
 
 
 </div>
@@ -72,3 +72,5 @@ export default Login;
 
 
   
+
+
