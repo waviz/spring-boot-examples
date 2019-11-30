@@ -1,4 +1,4 @@
-package com.waviz.jdbc.dao;
+package com.waviz.jdbc.Dao;
 import java.util.List;
 
 import org.springframework.ui.Model;
