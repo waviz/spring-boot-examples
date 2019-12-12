@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <title>Spring Boot jdbc Example</title>
+    </head>
+    <body>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<center>
+    <h1 style="color: red">Welcome to springboot users</h1>
+  </center>
+  <hr/>
+<table bgcolor="green" border="1" width = "2000" height = "50"> 
+  <tr >
+    <th>S.n</th> 
+    <th> id</th>
+    <th>user_name</th>
+    <th>password</th>
+    <th>email</th> 
+    <th>first_name</th>
+    <th>last_name</th>
+    <th>phone_number</th>
+    <th>is_verified</th>
+    <th>otp</th>
+    <th>country_id</th> 
+    <th>status</th>
+    <th>modified_by</th>
+     <th>modified_on</th> 
+    <th>created_on</th>
+    </tr> 
+
+    <tr>
+      <td><div id="sn"></div></td>
+      <td><div id="id1"></div></td>
+      <td id="user_name"></td>
+      <td id="password"></td>
+      <td id="email"></td>
+      <td id="first_name"></td>
+      <td id="last_name"></td>
+      <td id="phone_number"></td>
+      <td id="is_verified"></td>
+      <td id="otp"></td>
+      <td id="country_id"></td>
+      <td id="status"></td>
+       <td id="modified_by"></td>
+      <td id="modified_on"></td>
+      <td id="created_on"></td>
+    
+    </tr>
+    </table>
+   <script type="text/javascript">
+GET: $(document).ready(function(){
+
+      // DO GET
+      $.ajax({
+        type: "GET",
+        //data: {"users": users},
+        url: "http://localhost:8080/users",
+          success : function(result) {
+           // alert(result);
+            console.log(result);
+            for (var i = 0; i < result.length; i++){
+             $("#sn").append(i+1);                           $("#sn").append("<br>"); 
+             $("#id1").append(result[i]['id']);              $("#id1").append("<br>");
+             $("#user_name").append(result[i]['user_name']); $("#user_name").append("<br>"); 
+             $("#password").append(result[i]['password']);   $("#password").append("<br>");
+             $("#email").append(result[i]['email']);         $("#email").append("<br>");
+             $("#first_name").append(result[i]['first_name']);$("#first_name").append("<br>");
+             $("#last_name").append(result[i]['last_name']); $("#last_name").append("<br>");
+             $("#phone_number").append(result[i]['phone_number']); $("#phone_number").append("<br>");
+             $("#is_verified").append(result[i]['is_verified']); $("#is_verified").append("<br>");
+             $("#otp").append(result[i]['otp']);               $("#otp").append("<br>");
+             $("#country_id").append(result[i]['country_id']); $("#country_id").append("<br>");
+             $("#status").append(result[i]['status']);         $("#status").append("<br>");
+             $("#modified_by").append(result[i]['modified_by']);$("#modified_by").append("<br>");
+             $("#modified_on").append(result[i]['modified_on']);$("#modified_on").append("<br>");
+             $("#created_on").append(result[i]['created_on']); $("#created_on").append("<br>");
+            // $("#id1").append("<br>");
+             /* $("#response").append(response[i]['id']);        $("#response").append(" ");
+              $("#response").append(response[i]['user_name']); $("#response").append(" ");
+              $("#response").append(response[i]['password']);  $("#response").append(" ");
+              $("#response").append(response[i]['email']);     $("#response").append(" ");
+              $("#response").append(response[i]['first_name']);$("#response").append(" ");
+              $("#response").append(response[i]['last_name']); $("#response").append(" ");
+              $("#response").append(response[i]['phone_number']);$("#response").append(" ");
+              $("#response").append(response[i]['is_verified']);$("#response").append(" ");
+              $("#response").append(response[i]['otp']);        $("#response").append(" ");
+              $("#response").append(response[i]['country_id']); $("#response").append(" ");
+              $("#response").append(response[i]['status']);     $("#response").append(" ");
+              $("#response").append(response[i]['modified_by']);$("#response").append(" ");
+              $("#response").append(response[i]['modified_on']);$("#response").append(" ");
+              $("#response").append(response[i]['created_on']); $("#response").append(" ");
+              */
+              
+
+
+}
+         //   $("#response").html(result[0]['id']);
+          }
+        });
+      
+})
+   </script>
+    </body>
+</html>
