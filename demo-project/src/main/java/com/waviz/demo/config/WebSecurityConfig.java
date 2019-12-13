@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -52,7 +53,9 @@ httpSecurity.csrf().disable()
 
 // dont authenticate this particular request
 
-.authorizeRequests().antMatchers("/login", "/signup").permitAll().
+.authorizeRequests().antMatchers("/login", "/signup").permitAll()
+     .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+     .permitAll().
 
 // all other requests need to be authenticated
 
@@ -65,3 +68,15 @@ exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().
 httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
  }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
 package com.waviz.demo.model;
+import java.security.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,25 +22,33 @@ public class Users {
  @Column(name = "lastname")
  private String lastname;
  
+ @Column(name = "otp")
+ private int otp;
+ 
  @Column(name = "email")
  private String email;
  
  @Column(name = "password")
  private String password;
  
+ @Column(name = "created_at")
+ private Timestamp created_at;
+ 
  public Users(){
      super();
  }
 	
-	  public Users(int id, String firstname, String lastname, String email, String password) 
+	  public Users(int id, String firstname, String lastname,int otp, String email, String password,Timestamp created_at) 
 	  { 
 	  super();
 	  
 	  this.id = id; 
 	  this.firstname = firstname;
-	  this.lastname = lastname; 
+	  this.lastname = lastname;
+	  this.otp = otp;
 	  this.email = email; 
 	  this.password = password;
+	  this.created_at = created_at;
 	  
 	 }
 	
@@ -57,6 +67,14 @@ public String getFirstname() {
 
 public void setFirstname(String firstname) {
 	this.firstname = firstname;
+}
+
+public int getOtp() {
+	return otp;
+}
+
+public void setOtp(int otp) {
+	this.otp = otp;
 }
 
 public String getLastname() {
@@ -81,6 +99,14 @@ public String getPassword() {
 
 public void setPassword(String password) {
 	this.password = password;
+}
+
+public Timestamp getCreated_at() {
+	return created_at;
+}
+
+public void setCreated_at(Timestamp created_at) {
+	this.created_at = created_at;
 }
 
 }

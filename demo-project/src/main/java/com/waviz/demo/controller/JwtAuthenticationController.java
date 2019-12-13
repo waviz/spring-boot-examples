@@ -46,7 +46,13 @@ import com.waviz.demo.service.JwtUserDetailsService;
 	System.out.println(user);
 	 return ResponseEntity.ok(userDetailsService.save(user));
    }
-
+	    
+  @RequestMapping({"/home"})  
+    public String index(){
+			 
+    return"Welcome To User";  
+  }
+	
 
    private void authenticate(String username, String password) throws Exception {
       try {
