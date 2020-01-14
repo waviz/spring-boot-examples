@@ -4,14 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-import com.waviz.jdbc.model.User;
+import com.waviz.jdbc.model.UserApp;
 
-public class UserMapper implements RowMapper<User>
+public class UserAppMapper implements RowMapper<UserApp>
 {
     @Override
-    public User mapRow(ResultSet rs, int rownumber) throws SQLException 
+    public UserApp mapRow(ResultSet rs, int rownumber) throws SQLException 
     {
-         User user = new User();
+         UserApp user = new UserApp();
          user.setId(rs.getLong("id"));
          user.setUser_name(rs.getString("user_name"));
          user.setPassword(rs.getString("password"));

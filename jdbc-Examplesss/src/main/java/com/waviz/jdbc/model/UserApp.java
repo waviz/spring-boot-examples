@@ -3,7 +3,7 @@ package com.waviz.jdbc.model;
 import java.util.Date;
 
 
-public class User {
+public class UserApp{
   private Long id;
   private String user_name;
   private String password;
@@ -20,11 +20,11 @@ public class User {
   private Date created_on;
  
   
-  public User()
+  public UserApp()
   {
       super();
   }
-  public User(String name, String password, String email, String first_name, String last_name, String Phone_number,boolean is_verified, 
+  public UserApp(String name, String password, String email, String first_name, String last_name, String Phone_number,boolean is_verified, 
 	int country_id, int status, Long modified_by, Date modified_on, Date created_on)
   {
       super();
@@ -129,8 +129,8 @@ public class User {
  public void setCreated_on(Date created_on) {
 	this.created_on = created_on;
  }
-	public static User fromId(Long id){
-        User user=new User();
+	public static UserApp fromId(Long id){
+        UserApp user=new UserApp();
         user.setId(id);
         return user;
     }

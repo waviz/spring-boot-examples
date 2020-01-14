@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.waviz.jdbc.Dao.UserDaoImpl;
-import com.waviz.jdbc.model.User;
+import com.waviz.jdbc.model.UserApp;
 import com.waviz.jdbc.model.Users;
 
 	@RestController
@@ -33,32 +33,32 @@ import com.waviz.jdbc.model.Users;
 	    
 	  //getAllUser
 	    @GetMapping("/users")
-	    public ResponseEntity<List<User>> getAllUser()
+	    public ResponseEntity<List<UserApp>> getAllUser()
 	    {
 	    	log.info("Users found with findAllUser()");
-	        List<User> userList = userDaoImpl.getAllUsers();
-	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	        List<UserApp> userList = userDaoImpl.getAllUsers();
+	        return new ResponseEntity<List<UserApp>>(userList, HttpStatus.OK);
 	        
 	    }
 	    
 	    
 	  //getUserById
 	    @GetMapping("/user/{id}")
-	    public ResponseEntity<User> getUserById(@PathVariable Integer id)
+	    public ResponseEntity<UserApp> getUserById(@PathVariable Integer id)
 	    {
 	    	log.info("Users found with findById()");
-	    	User user = userDaoImpl.getUserById(id);
-	        return new ResponseEntity<User>(user, HttpStatus.OK);
+	    	UserApp user = userDaoImpl.getUserById(id);
+	        return new ResponseEntity<UserApp>(user, HttpStatus.OK);
 	    }
 
-	  //new user b/e date
+	  //new user b/w date
 	    @GetMapping("/user/{date1}/{date2}")
-	    public ResponseEntity<List<User>> getUserByCreated_on(@PathVariable("date1") String dateFrom,
+	    public ResponseEntity<List<UserApp>> getUserByCreated_on(@PathVariable("date1") String dateFrom,
 	    		@PathVariable("date2") String dateTo)
 	    {
 	    	log.info("Users found with findByNewUser()");
-	    	List<User> userList = userDaoImpl.getUserByCreated_on(dateFrom,dateTo); 
-	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	    	List<UserApp> userList = userDaoImpl.getUserByCreated_on(dateFrom,dateTo); 
+	        return new ResponseEntity<List<UserApp>>(userList, HttpStatus.OK);
 	    }
 	    
 	    //count new user b/e date 
@@ -74,26 +74,26 @@ import com.waviz.jdbc.model.Users;
 	    
 	    //Active User b/w date
 	    @GetMapping("/ActiveUser/{date1}/{date2}")
-	    public ResponseEntity<List<User>> getUserByStatusFromUser(@PathVariable("date1") String dateFrom,
+	    public ResponseEntity<List<UserApp>> getUserByStatusFromUser(@PathVariable("date1") String dateFrom,
 	    		@PathVariable("date2") String dateTo)
 	    {
 	    	log.info("Users found with findActiveUser()");
-	    	List<User> userList = userDaoImpl.getUserByStatusFromUser(dateFrom,dateTo); 
-	        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	    	List<UserApp> userList = userDaoImpl.getUserByStatusFromUser(dateFrom,dateTo); 
+	        return new ResponseEntity<List<UserApp>>(userList, HttpStatus.OK);
 	    }
 	    
 	    //Update
 	    @PutMapping("/update")
-	    public ResponseEntity<User> updateArticle(@RequestBody User user)
+	    public ResponseEntity<UserApp> updateArticle(@RequestBody UserApp user)
 	    {
 	    	log.info("Users found with UpdateUser()");
             userDaoImpl.updateUser(user);
-	        return new ResponseEntity<User>(user, HttpStatus.OK);
+	        return new ResponseEntity<UserApp>(user, HttpStatus.OK);
 	    }
         
 	    //Insert
 	    @PostMapping("/insert")
-	    public ResponseEntity<Void> insertArticle(@RequestBody User user)
+	    public ResponseEntity<Void> insertArticle(@RequestBody UserApp user)
 	    {
 	    	log.info(" Insert New Data()");
 	    	userDaoImpl.insertUser(user);

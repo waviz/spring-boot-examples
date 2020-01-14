@@ -1,19 +1,12 @@
 package com.waviz.jdbc.Dao;
 
-import java.util.Date;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
-import com.waviz.jdbc.mapper.EventParticipantMapper;
-import com.waviz.jdbc.mapper.UserMapper;
-import com.waviz.jdbc.mapper.UsersMapper;
-import com.waviz.jdbc.model.EventParticipant;
-import com.waviz.jdbc.model.User;
+import com.waviz.jdbc.mapper.UserAppMapper;
+import com.waviz.jdbc.model.UserApp;
 import com.waviz.jdbc.model.Users;
 
 @Repository
@@ -24,35 +17,35 @@ public class UserDaoImpl implements UserDao
     
     //getAllUser
     @Override
-    public List<User> getAllUsers()
+    public List<UserApp> getAllUsers()
     {
         String sql = "select * from user";
-        List<User> userList = jdbcTemplate
-                .query(sql, new UserMapper());
+        List<UserApp> userList = jdbcTemplate
+                .query(sql, new UserAppMapper());
         return userList;
     }
     
     //getUserById
     @Override
-    public User getUserById(int id)
+    public UserApp getUserById(int id)
     {
         String sql = "select * from user where id =?";
-        User user = jdbcTemplate
-                .queryForObject(sql, new UserMapper(), id);
+        UserApp user = jdbcTemplate
+                .queryForObject(sql, new UserAppMapper(), id);
         return user;
     }
     
-    //new user b/e date
+    //new user b/w date
     @Override
-    public List<User> getUserByCreated_on(String DateFrom ,String DateTo) {
+    public List<UserApp> getUserByCreated_on(String DateFrom ,String DateTo) {
     
         String sql = "SELECT * from user where created_on between ? and ?";
-        List<User> userList = jdbcTemplate
-                .query(sql, new UserMapper(),DateFrom,DateTo);
+        List<UserApp> userList = jdbcTemplate
+                .query(sql, new UserAppMapper(),DateFrom,DateTo);
         return userList;
     }
     
-   // count new user b/e date
+   // count new user b/w date
     @Override
     public String countUserByCreated_on(String DateFrom ,String DateTo) {
         String sql = "SELECT count(phone_number) from user where created_on between ? and ?";
@@ -64,17 +57,17 @@ public class UserDaoImpl implements UserDao
     
   //Active User b/w date
     @Override
-    public List<User> getUserByStatusFromUser(String DateFrom ,String DateTo) {
+    public List<UserApp> getUserByStatusFromUser(String DateFrom ,String DateTo) {
     
         String sql = "SELECT * FROM user where status = '1' and created_on between ? and ?";
-        List<User> userList = jdbcTemplate
-                .query(sql, new UserMapper(),DateFrom,DateTo);
+        List<UserApp> userList = jdbcTemplate
+                .query(sql, new UserAppMapper(),DateFrom,DateTo);
         return userList;
     }
     
     //Insert
     @Override
-    public void insertUser(User user)
+    public void insertUser(UserApp user)
     {
         String sql = "insert into user (id,user_name,password,email,first_name,last_name,phone_number,is_verified,otp,country_id,status,modified_by,modified_on,created_on) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, user.getId(),user.getUser_name(),user.getPassword(),user.getEmail(),user.getFirst_name(),user.getLast_name(),user.getPhone_number(),user.getIs_verified(),user.getOtp(),user.getCountry_id(),user.getStatus(),user.getModified_by(),user.getModified_on(),user.getCreated_on());
@@ -82,7 +75,7 @@ public class UserDaoImpl implements UserDao
 
     //Update
     @Override
-    public void updateUser(User user)
+    public void updateUser(UserApp user)
     {
         String sql = "update user set user_name = ?,password = ?,email = ?,first_name = ?,last_name = ?,phone_number = ?,is_verified = ?,otp = ?,country_id = ?,status = ?,modified_by = ?,modified_on = ?,created_on = ? where id = ?";
         jdbcTemplate.update(sql, user.getId(),user.getUser_name(),user.getPassword(),user.getEmail(),user.getFirst_name(),user.getLast_name(),user.getPhone_number(),user.getIs_verified(),user.getOtp(),user.getCountry_id(),user.getStatus(),user.getModified_by(),user.getModified_on(), user.getCreated_on());
@@ -135,7 +128,4 @@ public class UserDaoImpl implements UserDao
         return jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper<Users>(Users.class));
     }
-  
-    
-   
 }
